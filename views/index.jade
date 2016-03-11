@@ -1,0 +1,18 @@
+html
+  head
+    title= "notebook"
+  body
+    h1= "Welcome"
+    div
+      span(style='color: red')= msg
+    div
+        p= "Use this form to save data"
+        form(action='/save', method='post')
+          input(type='text', name='key', placeholder='key')
+          input(type='text', name='value', placeholder='note')
+          input(type='submit', value='Save')
+    div
+        p= "Locate data"
+        form(action='/load', method='post')
+            input(type='text', name='key', placeholder='key')
+            input(type='submit', value='Load')

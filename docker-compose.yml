@@ -1,0 +1,26 @@
+version: "2"
+
+services:
+  filestore:
+    image: tebro/filestore
+    ports:
+      - "10000:10000"
+    networks:
+      - notebook
+    environment:
+      STORAGE_FILE_PATH: "/filestore"
+      STORAGE_BACKEND: "file"
+    volumes:
+      - "filestore:/filestore"
+
+  web:
+    build: .
+    networks:
+      - notebook
+    ports:
+      - "80:80"
+
+networks:
+  notebook:
+volumes:
+  filestore:
