@@ -9,7 +9,6 @@ app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 app.get('/', function (req, res) {
-    console.log("Get request got: " + JSON.stringify(req));
     res.render('index', {});
 });
 
