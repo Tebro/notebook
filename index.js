@@ -23,7 +23,7 @@ app.post('/save', function(req, res) {
     };
     console.log(options);
     fs.storeData(options, (err, data) => {
-      msg = {msg: ""};
+      var msg = {msg: ""};
       if(err != null) {
           msg.msg = "Error: " + err.msg;
       }else {
