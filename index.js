@@ -8,11 +8,11 @@ app.set('view engine', 'jade');
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
-app.get('/', function (req, res) {
+app.get('/', (req, res) => {
     res.render('index', {});
 });
 
-app.post('/save', function(req, res) {
+app.post('/save', (req, res) => {
     var key = req.body.key;
     var value = req.body.value;
     var options = {
@@ -45,6 +45,6 @@ app.post('/load', (req, res) => {
     })
 });
 
-app.listen(80, function () {
+app.listen(80, () => {
       console.log('Example app listening on port 80!');
 });
