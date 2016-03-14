@@ -1,4 +1,7 @@
 FROM node:onbuild
 
-EXPOSE 80
+RUN npm install -g gulp
+RUN gulp
+
+EXPOSE 8080
 

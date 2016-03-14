@@ -7,6 +7,7 @@ var app = express();
 app.set('view engine', 'jade');
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+app.use('/public', express.static(__dirname + '/public'));
 
 app.get('/', (req, res) => {
     res.render('index', {});
@@ -45,6 +46,6 @@ app.post('/load', (req, res) => {
     })
 });
 
-app.listen(80, () => {
-      console.log('Example app listening on port 80!');
+app.listen(8080, () => {
+      console.log('Example app listening on port 8080!');
 });

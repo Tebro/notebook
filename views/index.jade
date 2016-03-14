@@ -1,6 +1,7 @@
 html
   head
     title= "notebook"
+    link(href="public/main.css", rel="stylesheet", type="text/css")
   body
     h1= "Welcome"
     div
@@ -16,3 +17,8 @@ html
         form(action='/load', method='post')
             input(type='text', name='key', placeholder='key')
             input(type='submit', value='Load')
+
+
+    script(src="//cdn.jsdelivr.net/riot/2.3/riot.min.js")
+    script(src="public/all.js")
+    script riot.mount('*')
