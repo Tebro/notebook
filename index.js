@@ -3,6 +3,8 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
+var port = process.env.NOTEBOOK_PORT;
+
 var mongoUrl = "mongodb://" + process.env.MONGODB_SERVER + "/" + process.env.MONGODB_NAME
 mongoose.connect(mongoUrl);
 
@@ -51,6 +53,6 @@ app.post('/load', (req, res) => {
     })
 });
 
-app.listen(8080, () => {
-      console.log('Example app listening on port 8080!');
+app.listen(port, () => {
+      console.log('Example app listening on port ' + port + '!');
 });

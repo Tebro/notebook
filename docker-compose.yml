@@ -29,6 +29,7 @@ services:
       MONGODB_NAME: "notebook"
       FILESTORE_SERVER: "filestore"
       FILESTORE_PORT: 10000
+      NOTEBOOK_PORT: 8080
 
 networks:
   notebook:
