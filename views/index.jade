@@ -2,6 +2,8 @@ html
   head
     title= "notebook"
     link(href="public/main.css", rel="stylesheet", type="text/css")
+    script(src="/socket.io/socket.io.js")
+    script var socket = io();
   body
     h1= "Welcome"
     div
@@ -20,5 +22,6 @@ html
 
 
     script(src="//cdn.jsdelivr.net/riot/2.3/riot.min.js")
-    script(src="public/all.js")
+    script(src="public/riot.js")
     script riot.mount('*')
+    script(src="public/main.js")

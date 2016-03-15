@@ -1,16 +1,18 @@
 var FileStore = require('tebro-filestore');
 var express = require('express');
+var app = express();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
-var port = process.env.NOTEBOOK_PORT;
+var port = process.env.NOTEBOOK_PORT || 8080;
 
-var mongoUrl = "mongodb://" + process.env.MONGODB_SERVER + "/" + process.env.MONGODB_NAME
+var mongoUrl = "mongodb://" + (process.env.MONGODB_SERVER || "127.0.0.1") + "/" + (process.env.MONGODB_NAME || "notebook")
 mongoose.connect(mongoUrl);
 
-var fs = new FileStore(process.env.FILESTORE_SERVER, process.env.FILESTORE_PORT);
+var fs = new FileStore((process.env.FILESTORE_SERVER || "127.0.0.1"), (process.env.FILESTORE_PORT || 10000));
 
-var app = express();
 app.set('view engine', 'jade');
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
@@ -53,6 +55,10 @@ app.post('/load', (req, res) => {
     })
 });
 
-app.listen(port, () => {
-      console.log('Example app listening on port ' + port + '!');
+http.listen(port, () => {
+    console.log('App listening on port ' + port + '!');
 });
+
+//app.listen(port, () => {
+//      console.log('Example app listening on port ' + port + '!');
+//});

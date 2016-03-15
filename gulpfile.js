@@ -4,8 +4,10 @@ var less = require('gulp-less-sourcemap');
 var minifyCSS = require('gulp-minify-css');
 var sourcemaps = require('gulp-sourcemaps');
 var riot = require('gulp-riot');
+var browserify = require('browserify');
+var source = require('vinyl-source-stream');
 
-gulp.task('default', ['less', 'scripts'])
+gulp.task('default', ['less', 'concat-riot', 'browserify'])
 
 gulp.task('less', function() {
     return gulp.src('./src/less/main.less')
@@ -16,16 +18,21 @@ gulp.task('less', function() {
 
 gulp.task('riot', () => {
     return gulp.src('./src/riot/*.tag')
-            .pipe(sourcemaps.init())
             .pipe(riot())
-            .pipe(sourcemaps.write())
-            .pipe(gulp.dest('./build/'))
+            .pipe(gulp.dest('./build/tags/'))
 });
 
-gulp.task('scripts', ['riot'], function() {
-    return gulp.src(['./src/js/*.js', './build/*.js'])
+gulp.task('concat-riot', ['riot'], function() {
+    return gulp.src(['./build/tags/*.js'])
             .pipe(sourcemaps.init())
-            .pipe(concat('all.js'))
+            .pipe(concat('riot.js'))
             .pipe(sourcemaps.write())
             .pipe(gulp.dest('./public/'));
+});
+
+gulp.task('browserify', function(){
+    return browserify('./src/js/main.js',{debug: true} )
+            .bundle()
+            .pipe(source('main.js'))
+            .pipe(gulp.dest('./public/'))
 });

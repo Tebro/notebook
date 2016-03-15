@@ -17,6 +17,8 @@ services:
     image: mongo
     networks:
       - notebook
+    ports:
+      - "27017:27017"
 
   web:
     build: .
