@@ -1,8 +1,13 @@
 var FileStore = require('tebro-filestore');
 var express = require('express');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 
-var fs = new FileStore('filestore', 10000);
+var mongoUrl = "mongodb://" + process.env.MONGODB_SERVER + "/" + process.env.MONGODB_NAME
+mongoose.connect(mongoUrl);
+
+var fs = new FileStore(process.env.FILESTORE_SERVER, process.env.FILESTORE_PORT);
+
 var app = express();
 app.set('view engine', 'jade');
 app.use(bodyParser.json()); // support json encoded bodies

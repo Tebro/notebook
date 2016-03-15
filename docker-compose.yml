@@ -13,12 +13,22 @@ services:
     volumes:
       - "filestore:/filestore"
 
+  mongo:
+    image: mongo
+    networks:
+      - notebook
+
   web:
     build: .
     networks:
       - notebook
     ports:
       - "80:80"
+    environment:
+      MONGODB_SERVER: "mongo"
+      MONGODB_NAME: "notebook"
+      FILESTORE_SERVER: "filestore"
+      FILESTORE_PORT: 10000
 
 networks:
   notebook:
