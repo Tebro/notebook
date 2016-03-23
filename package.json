@@ -23,7 +23,7 @@
     "less": "^2.6.1",
     "mongoose": "^4.4.7",
     "socket.io": "^1.4.5",
-    "tebro-filestore": "^0.2.0",
+    "@tebro/filestore": "^0.2.0",
     "vinyl-source-stream": "^1.1.0"
   }
 }
